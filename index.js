@@ -10,7 +10,8 @@ var APIServer = function constructor(opts) {
         middleware: './app/middleware',
         controllers: './app/controllers',
         port: 8080,
-        debug: debug
+        debug: debug,
+        autoStart: true
     };
 
     for (var p in opts) {
@@ -25,12 +26,15 @@ var APIServer = function constructor(opts) {
     self.middleware = new MiddlewareManager();
 
     self.setupRouteHandlers();
-    self.setup();
+
+    if(self.opts.autoStart === true) {
+        self.start();
+    }
 
     return self;
 };
 
-APIServer.prototype.setup = function setup() {
+APIServer.prototype.start = function start() {
     var self = this;
 
     var middlewareBase = path.resolve(self.opts.middleware);
