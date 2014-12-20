@@ -19,6 +19,8 @@ var APIServer = function constructor(opts) {
         o[p] = opts[p];
     }
 
+    self.debug = self.opts.debug;
+
     self.server = express();
     self.middleware = new MiddlewareManager();
 
