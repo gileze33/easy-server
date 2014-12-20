@@ -9,7 +9,8 @@ var APIServer = function constructor(opts) {
     var o = this.opts = {
         middleware: './app/middleware',
         controllers: './app/controllers',
-        port: 8080
+        port: 8080,
+        debug: debug
     };
 
     for (var p in opts) {
@@ -17,8 +18,6 @@ var APIServer = function constructor(opts) {
 
         o[p] = opts[p];
     }
-
-    self.debug = this.opts.debug || debug;
 
     self.server = express();
     self.middleware = new MiddlewareManager();
@@ -69,7 +68,7 @@ APIServer.prototype.setup = function setup() {
 
 // route handlers
 APIServer.prototype.setupRouteHandlers = function setupRouteHandlers() {
-    var methods = ['get', 'post', 'put', 'delete', 'all'];
+    var methods = ['get', 'post', 'put', 'delete', 'all', 'use'];
     for(var i=0; i<methods.length; i++) {
         this[methods[i]] = this.server[methods[i]].bind(this.server);
     }
