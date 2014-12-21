@@ -1,0 +1,67 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.32
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/gileze33/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/Users/gileze33/.npm/easy-server/0.0.5/package.tgz', '.' ]
+11 verbose tarball /Users/gileze33/.npm/easy-server/0.0.5/package.tgz
+12 verbose folder .
+13 info prepublish easy-server@0.0.5
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/gileze33/.npm/1f1177db-tar.lock
+16 silly lockFile 54834893-pm-easy-server-0-0-5-package-tgz tar:///Users/gileze33/.npm/easy-server/0.0.5/package.tgz
+17 verbose lock tar:///Users/gileze33/.npm/easy-server/0.0.5/package.tgz /Users/gileze33/.npm/54834893-pm-easy-server-0-0-5-package-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 54834893-pm-easy-server-0-0-5-package-tgz tar:///Users/gileze33/.npm/easy-server/0.0.5/package.tgz
+21 silly lockFile 54834893-pm-easy-server-0-0-5-package-tgz tar:///Users/gileze33/.npm/easy-server/0.0.5/package.tgz
+22 silly lockFile 7922307e-33-npm-easy-server-0-0-5-package /Users/gileze33/.npm/easy-server/0.0.5/package
+23 verbose lock /Users/gileze33/.npm/easy-server/0.0.5/package /Users/gileze33/.npm/7922307e-33-npm-easy-server-0-0-5-package.lock
+24 silly lockFile 7922307e-33-npm-easy-server-0-0-5-package /Users/gileze33/.npm/easy-server/0.0.5/package
+25 silly lockFile 7922307e-33-npm-easy-server-0-0-5-package /Users/gileze33/.npm/easy-server/0.0.5/package
+26 silly lockFile 3a52ce78- .
+27 silly lockFile 3a52ce78- .
+28 silly publish { name: 'easy-server',
+28 silly publish   version: '0.0.5',
+28 silly publish   description: 'Easiest possible express wrapper to get something out the door yesterday',
+28 silly publish   main: 'index.js',
+28 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+28 silly publish   repository: { type: 'git', url: 'https://github.com/gileze33/easy-server' },
+28 silly publish   author: { name: 'Giles Williams' },
+28 silly publish   license: 'ISC',
+28 silly publish   dependencies:
+28 silly publish    { debug: '^2.1.0',
+28 silly publish      express: '^4.10.6',
+28 silly publish      'middleware-manager': '0.0.1' },
+28 silly publish   gitHead: '7726d99e0bdaca636b85daed3719f24bf62b43f6',
+28 silly publish   bugs: { url: 'https://github.com/gileze33/easy-server/issues' },
+28 silly publish   readme: 'ERROR: No README data found!',
+28 silly publish   homepage: 'https://github.com/gileze33/easy-server',
+28 silly publish   _id: 'easy-server@0.0.5',
+28 silly publish   _shasum: '8c6b181ea7a0ab4584639c1c003ae18df84659e4',
+28 silly publish   _from: '.' }
+29 error need auth auth and email required for publishing
+29 error need auth You need to authorize this machine using `npm adduser`
+30 error System Darwin 14.0.0
+31 error command "node" "/usr/local/bin/npm" "publish"
+32 error cwd /Users/gileze33/Dropbox/it/easy-server
+33 error node -v v0.10.32
+34 error npm -v 1.4.28
+35 error code ENEEDAUTH
+36 verbose exit [ 1, true ]
