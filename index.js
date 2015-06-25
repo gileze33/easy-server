@@ -1,6 +1,7 @@
 var path = require('path');
 var debug = require('debug')('easy-server');
 var express = require('express');
+var cluster = require('cluster');
 var MiddlewareManager = require('middleware-manager');
 
 var APIServer = function constructor(opts) {
@@ -36,6 +37,17 @@ var APIServer = function constructor(opts) {
 
 APIServer.prototype.start = function start() {
     var self = this;
+
+    if(typeof(self.opts.cluster) !== 'undefined') {
+        if(cluster.isMaster) {
+            for (var i = 0; i < self.opts.cluster; i += 1) {
+                cluster.fork();
+            }
+            self.debug('Started '+self.opts.cluster+' forks from master process (in cluster mode)');
+
+            return;
+        }
+    }
 
     var middlewareBase = path.resolve(self.opts.middleware);
     require("fs").readdirSync(middlewareBase).forEach(function(file) {
