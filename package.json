@@ -1,6 +1,6 @@
 {
   "name": "easy-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Easiest possible express wrapper to get something out the door yesterday",
   "main": "index.js",
   "scripts": {
