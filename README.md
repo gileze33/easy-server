@@ -8,7 +8,8 @@ Really lightweight wrapper around express to help you make a neat app from day o
     "controllers": "./controllers", // folder containing your controller files
     "middleware": "./middleware", // folder containing your middleware files
     "autoStart": true, // if set to false, you need to call setup()
-    "debug": Function // pass a function to be used as the debug logger
+    "debug": Function, // pass a function to be used as the debug logger
+    "cluster": Number // optional - leaving out will run 1 instance of express
 }
 ```
 
@@ -28,7 +29,7 @@ var server = new Server({
     middleware: "./app/middleware",
     autoStart: false,
     debug: console.log,
-    cluster: 4 // optional - leaving blank will run 1 instance of express
+    cluster: 4
 });
 server.use(require('cookie-parser'));
 server.start();
