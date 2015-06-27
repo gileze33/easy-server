@@ -27,7 +27,8 @@ var server = new Server({
     controllers: "./app/controllers",
     middleware: "./app/middleware",
     autoStart: false,
-    debug: console.log
+    debug: console.log,
+    cluster: 4 // optional - leaving blank will run 1 instance of express
 });
 server.use(require('cookie-parser'));
 server.start();
