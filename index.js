@@ -1,8 +1,25 @@
 var path = require('path');
+var fs = require('fs');
 var debug = require('debug')('easy-server');
 var express = require('express');
 var cluster = require('cluster');
 var MiddlewareManager = require('middleware-manager');
+
+// Walk a directory to find all files inside.
+var walk = function(dir, base) {
+    base = base ? base + '/' : '';
+
+    var results = [];
+    var list = fs.readdirSync(dir);
+
+    list.forEach(function(file) {
+        var stat = fs.statSync(dir + '/' + file);
+        if (stat && stat.isDirectory()) results = results.concat(walk(dir + '/' + file, base + file));
+        else results.push(base + file);
+    });
+
+    return results;
+}
 
 var APIServer = function constructor(opts) {
     var self = this;
@@ -50,7 +67,7 @@ APIServer.prototype.start = function start() {
     }
 
     var middlewareBase = path.resolve(self.opts.middleware);
-    require("fs").readdirSync(middlewareBase).forEach(function(file) {
+    walk(middlewareBase).forEach(function(file) {
         if(file.substr(file.length-3) == '.js') {
             var middleware = require(middlewareBase + '/' + file);
 
@@ -66,7 +83,7 @@ APIServer.prototype.start = function start() {
     });
 
     var controllersBase = path.resolve(self.opts.controllers);
-    require("fs").readdirSync(controllersBase).forEach(function(file) {
+    walk(controllersBase).forEach(function(file) {
         if(file.substr(file.length-3) == '.js') {
             var controllerFile = require(controllersBase + '/' + file);
 
