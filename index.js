@@ -86,13 +86,18 @@ APIServer.prototype.start = function start() {
     walk(controllersBase).forEach(function(file) {
         if(file.substr(file.length-3) == '.js') {
             var controllerFile = require(controllersBase + '/' + file);
+            
+            if( /(\/|^)_/.test(file) ) {
+                // Ignore files and directories beginning with _
+                return self.debug('Ignored private file %s', file);
+            }
 
             if(typeof(controllerFile.controller) === 'function') {
                 controllerFile.controller(self);
                 self.debug('Loaded controller in file', file);
             }
             else {
-                self.debug('Ignored', file, 'as no controller function was exported');
+                self.debug('Ignored %s as no controller function was exported', file);
             }
         }
     });
