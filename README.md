@@ -13,6 +13,8 @@ Really lightweight wrapper around express to help you make a neat app from day o
 }
 ```
 
+All files in controllers and middleware directories will be included automatically, except for files and folders starting with `_`.
+
 ##Example app
 ```
 server.js
