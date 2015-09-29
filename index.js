@@ -71,6 +71,12 @@ APIServer.prototype.start = function start() {
         }
     }
 
+    if(typeof(self.opts.title) !== 'undefined') {
+        process.stdout.write(
+            String.fromCharCode(27) + "]0;" + self.opts.title + String.fromCharCode(7)
+        );
+    }
+
     var middlewareBase = path.resolve(self.opts.middleware);
     walk(middlewareBase).forEach(function(file) {
         if(file.substr(file.length-3) == '.js') {
