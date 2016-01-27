@@ -1,2 +1,5 @@
-# 1.1.0
-- publishing [`easy-server-dev`](https://github.com/urbanmassage/easy-server-dev)
+# 1.4.0
+- publishing dev version
+
+# 1.3.0
+- CORS middleware
