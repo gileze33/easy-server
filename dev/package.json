@@ -1,0 +1,23 @@
+{
+  "name": "easy-server-dev",
+  "version": "1.1.0",
+  "description": "Easiest possible express wrapper to get something out the door yesterday",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gileze33/easy-server"
+  },
+  "author": "Giles Williams",
+  "license": "ISC",
+  "dependencies": {
+    "chokidar": "^1.4.2",
+    "debug": "^2.1.0",
+    "express": "^4.10.6",
+    "js-debounce": "^0.3.1",
+    "middleware-manager": "0.0.3",
+    "require-all": "^2.0.0"
+  }
+}

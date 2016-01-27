@@ -1,25 +1,17 @@
+if (process.env.NODE_ENV === 'production') {
+  var err = new Error('You\'re using `easy-server-dev` in a production environment. You shouldn\'t. Use `easy-server` instead.');
+  err.name = 'EnvWarning';
+  console.warn(err.stack);
+}
+
 var path = require('path');
 var fs = require('fs');
 var debug = require('debug')('easy-server');
 var express = require('express');
 var cluster = require('cluster');
 var MiddlewareManager = require('middleware-manager');
-
-// Walk a directory to find all files inside.
-var walk = function(dir, base) {
-    base = base ? base + '/' : '';
-
-    var results = [];
-    var list = fs.readdirSync(dir);
-
-    list.forEach(function(file) {
-        var stat = fs.statSync(dir + '/' + file);
-        if (stat && stat.isDirectory()) results = results.concat(walk(dir + '/' + file, base + file));
-        else results.push(base + file);
-    });
-
-    return results;
-}
+var chokidar = require('chokidar');
+var debounce = require('js-debounce');
 
 var APIServer = function constructor(opts) {
     var self = this;
@@ -78,39 +70,45 @@ APIServer.prototype.start = function start() {
     }
 
     var middlewareBase = path.resolve(self.opts.middleware);
-    walk(middlewareBase).forEach(function(file) {
-        if(file.substr(file.length-3) == '.js') {
-            var middleware = require(middlewareBase + '/' + file);
-
-            if(typeof(middleware) === 'function') {
-                self.middleware.register(file.substr(0, file.length-3), middleware);
-
-                self.debug('Loaded middleware in file', file);
-            }
-            else {
-                self.debug('Ignored', file, 'middleware, as no function was exported');
-            }
-        }
+    var middleware = require('require-all')({
+      dirname     :  middlewareBase,
+      filter      :  /^((?!\/_).)*\.js$/,
+      excludeDirs :  /^\.(git|svn)$/,
+      recursive   : true,
+    });
+    Object.keys(middleware).forEach(function (file) {
+      var module = middleware[file];
+      if (typeof(module) === 'function') {
+        self.middleware.register(file.substr(0, file.length-3), module);
+        self.debug('Loaded middleware in file', file);
+      } else {
+        self.debug('Ignored %s middleware, as no function was exported', file);
+      }
     });
 
     var controllersBase = path.resolve(self.opts.controllers);
-    walk(controllersBase).forEach(function(file) {
-        if(file.substr(file.length-3) == '.js') {
-            var controllerFile = require(controllersBase + '/' + file);
+    self.router = require('./router').getRouter(controllersBase, self);
+    self.server.use(function (req, res, next) {
+      self.router(req, res, next);
+    });
 
-            if( /(\/|^)_/.test(file) ) {
-                // Ignore files and directories beginning with _
-                return self.debug('Ignored private file %s', file);
-            }
-
-            if(typeof(controllerFile.controller) === 'function') {
-                controllerFile.controller(self);
-                self.debug('Loaded controller in file', file);
-            }
-            else {
-                self.debug('Ignored %s as no controller function was exported', file);
-            }
-        }
+    // Do "hot-reloading" of express stuff on the server
+    // Throw away cached modules and re-require next time
+    // Ensure there's no important state in there!
+    var watcher = chokidar.watch(controllersBase);
+    watcher.on('ready', function() {
+      self.debug('Watching controllers for changes...');
+      watcher.on('all', function() {
+        debounce('easy-server-dev:clear-server-cache', 1000, function () {
+          self.debug("Clearing server module cache");
+          self.router = null;
+          Object.keys(require.cache).forEach(function(id) {
+            if (id.indexOf(controllersBase) > -1) delete require.cache[id];
+          });
+          delete require.cache[require.resolve('./router')];
+          self.router = require('./router').getRouter(controllersBase, self);
+        });
+      });
     });
 
     self.server.listen(self.opts.port);
