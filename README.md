@@ -15,6 +15,8 @@ Really lightweight wrapper around express to help you make a neat app from day o
 
 All files in controllers and middleware directories will be included automatically, except for files and folders starting with `_`.
 
+**Tip:** Use [`easy-server-dev`](https://github.com/urbanmassage/easy-server-dev) in your development environment to get controllers to hot-reload when they change.
+
 ##Example app
 ```
 server.js
@@ -52,7 +54,7 @@ module.exports = function(req, res, next) {
     if(!req.cookies['auth']) {
         return res.status(401).send('Unauthorized');
     }
-    
+
     next();
 };
 ```
