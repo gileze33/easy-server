@@ -49,6 +49,11 @@ var APIServer = function constructor(opts) {
         self.start();
     }
 
+    if(self.opts.cors === true) {
+        self.server.use(require(__dirname + '/cors.js'));
+        self.debug('Added CORS middleware');
+    }
+
     return self;
 };
 
