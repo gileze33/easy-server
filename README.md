@@ -15,7 +15,7 @@ Really lightweight wrapper around express to help you make a neat app from day o
 
 All files in controllers and middleware directories will be included automatically, except for files and folders starting with `_`.
 
-**Tip:** Use [`easy-server-dev`](https://github.com/urbanmassage/easy-server-dev) in your development environment to get controllers to hot-reload when they change.
+**Tip:** Use [`easy-server-dev`](https://github.com/urbanmassage/easy-server/tree/master/dev) in your development environment to get controllers to hot-reload when they change.
 
 ##Example app
 ```
