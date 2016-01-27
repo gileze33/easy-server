@@ -9,4 +9,3 @@ npm publish
 
 rm -rf ./shared
 ln -s ../shared ./
-
