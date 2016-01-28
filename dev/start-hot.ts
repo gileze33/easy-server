@@ -61,7 +61,7 @@ function start(server: Server): http.Server {
           if (id.indexOf(controllersBase) > -1) delete require.cache[id];
         });
         delete require.cache[require.resolve('./router')];
-        router = require('./router').getRouter(controllersBase, self);
+        router = require('./router').getRouter(controllersBase, server);
       });
     });
   });

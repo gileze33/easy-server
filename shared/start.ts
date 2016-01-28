@@ -48,7 +48,7 @@ function start(server: Server): http.Server {
   Object.keys(controllers).forEach(function(file) {
     var module = controllers[file];
     if (typeof (module.controller) === 'function') {
-      module.controller(self);
+      module.controller(server);
       server.debug('Loaded controller in file', file);
     }
     else {
