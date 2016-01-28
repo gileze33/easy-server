@@ -19,7 +19,8 @@
   "dependencies": {
     "debug": "^2.1.0",
     "express": "^4.10.6",
-    "middleware-manager": "0.0.3"
+    "middleware-manager": "0.0.3",
+    "require-all": "^2.0.0"
   },
   "devDependencies": {
     "tslint": "^3.3.0",
