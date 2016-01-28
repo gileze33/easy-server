@@ -6,7 +6,7 @@
   `var server = new EasyServer(options);`.
   - easyServer is now a subclass of `express.Server`. i.e. You should replace all references
   to `server.server.*` with just `server.*`
-  - You can now get a reference to the undelying http server when you call `.start` the same
+- You can now get a reference to the undelying http server when you call `.start` the same
   way you do when you call `express.listen`.
 
 # 1.4.0

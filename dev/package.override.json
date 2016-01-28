@@ -1,0 +1,7 @@
+{
+  "name": "easy-server-dev",
+  "dependencies": {
+    "chokidar": "^1.4.2",
+    "js-debounce": "^0.3.1"
+  }
+}
