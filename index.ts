@@ -1,5 +1,3 @@
-/// <reference path="typings/main" />
-
 const debug = require('debug')('easy-server');
 import express = require('express');
 const MiddlewareManager = require('middleware-manager');
