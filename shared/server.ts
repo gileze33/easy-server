@@ -18,5 +18,4 @@ export interface Server extends Express {
   debug: Function;
   middleware: any;
   start: Function;
-  setupRouteHandlers: Function;
 }

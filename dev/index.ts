@@ -34,8 +34,6 @@ function easyServer(options: Options): Server {
 
   app.middleware = new MiddlewareManager();
 
-  app.setupRouteHandlers();
-
   if (app.easyOptions.autoStart === true) {
     app.start();
   }
