@@ -4,6 +4,10 @@
   "description": "Easiest possible express wrapper to get something out the door yesterday",
   "main": "index.js",
   "scripts": {
+    "build": "tsc -p .",
+    "watch": "tsc -w -p .",
+    "typings": "if [[ $(typings -v) ]]; then (typings install || true); else echo 'Please install the `typings` package'; fi",
+    "postinstall": "if [[ $NODE_ENV != 'production' ]]; then npm run typings; fi",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +20,9 @@
     "debug": "^2.1.0",
     "express": "^4.10.6",
     "middleware-manager": "0.0.3"
+  },
+  "devDependencies": {
+    "tslint": "^3.3.0",
+    "typescript": "^1.7.5"
   }
 }
