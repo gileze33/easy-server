@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc -p .",
     "watch": "tsc -w -p .",
-    "typings": "if [[ $(typings -v) ]]; then (typings install || true); else echo 'Please install the `typings` package'; fi",
-    "postinstall": "if [[ $NODE_ENV != 'production' ]]; then npm run typings; fi",
+    "typings": "typings -v > /dev/null && typings install || echo 'Please install the `typings` package to use this package with typescript'",
+    "postinstall": "[ \"$NODE_ENV\" == \"production\" ] || npm run -s typings",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
