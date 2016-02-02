@@ -8,7 +8,8 @@
     "watch": "tsc -w -p .",
     "typings": "typings -v > /dev/null && typings install || echo 'Please install the `typings` package to use this package with typescript'",
     "postinstall": "[ \"$NODE_ENV\" == \"production\" ] || npm run -s typings",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postversion": "git push --follow-tags && ./publish.sh"
   },
   "repository": {
     "type": "git",
