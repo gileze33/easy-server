@@ -31,7 +31,7 @@ function start(server: Server): http.Server {
   Object.keys(middleware).forEach(function(file) {
     var module = middleware[file];
     if (typeof (module) === 'function') {
-      server.middleware.register(file.substr(0, file.length - 3), module);
+      server.middleware.register(file, module);
       server.debug('Loaded middleware in file', file);
     } else {
       server.debug('Ignored %s middleware, as no function was exported', file);
