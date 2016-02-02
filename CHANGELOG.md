@@ -1,3 +1,6 @@
+# 2.0.2
+- Fixed a middleware loading issue (incorrect regex for `require-all`)
+
 # 2.0.0
 - Rewritten in TypeScript!
 - Breaking changes:
