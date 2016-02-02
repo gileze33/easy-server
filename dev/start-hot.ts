@@ -1,5 +1,4 @@
 import {Server} from './shared/server';
-import cluster = require('cluster');
 import path = require('path');
 import http = require('http');
 
@@ -7,17 +6,6 @@ const chokidar = require('chokidar');
 const debounce = require('js-debounce');
 
 function start(server: Server): http.Server {
-  if (typeof (server.easyOptions.cluster) !== 'undefined') {
-    if (cluster.isMaster) {
-      for (let i = 0; i < server.easyOptions.cluster; i += 1) {
-        cluster.fork();
-      }
-      server.debug('Started ' + server.easyOptions.cluster + ' forks from master process (in cluster mode)');
-
-      return;
-    }
-  }
-
   if (typeof (server.easyOptions.title) !== 'undefined') {
     process.stdout.write(
       String.fromCharCode(27) + ']0;' + server.easyOptions.title + String.fromCharCode(7)
