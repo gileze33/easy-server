@@ -1,4 +1,5 @@
 import {Server} from './shared/server';
+import requireAll from './shared/require-all';
 import cluster = require('cluster');
 import path = require('path');
 import http = require('http');
@@ -22,12 +23,7 @@ function start(server: Server): http.Server {
   }
 
   var middlewareBase = path.resolve(server.easyOptions.middleware);
-  var middleware = require('require-all')({
-    dirname: middlewareBase,
-    filter: /^(((?!\/_).)*)\.js$/,
-    excludeDirs: /^\.(git|svn)$/,
-    recursive: true,
-  });
+  var middleware = requireAll(middlewareBase);
   Object.keys(middleware).forEach(function(file) {
     var module = middleware[file];
     if (typeof (module) === 'function') {
@@ -39,12 +35,7 @@ function start(server: Server): http.Server {
   });
 
   var controllersBase = path.resolve(server.easyOptions.controllers);
-  var controllers = require('require-all')({
-    dirname: controllersBase,
-    filter: /^(((?!\/_).)*)\.js$/,
-    excludeDirs: /^\.(git|svn)$/,
-    recursive: true,
-  });
+  var controllers = requireAll(controllersBase);
   Object.keys(controllers).forEach(function(file) {
     var module = controllers[file];
     if (typeof (module.controller) === 'function') {

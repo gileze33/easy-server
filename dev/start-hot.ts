@@ -1,4 +1,5 @@
 import {Server} from './shared/server';
+import requireAll from './shared/require-all';
 import path = require('path');
 import http = require('http');
 
@@ -13,12 +14,7 @@ function start(server: Server): http.Server {
   }
 
   const middlewareBase = path.resolve(server.easyOptions.middleware);
-  const middleware = require('require-all')({
-    dirname: middlewareBase,
-    filter: /^(((?!\/_).)*)\.js$/,
-    excludeDirs: /^\.(git|svn)$/,
-    recursive: true,
-  });
+  const middleware = requireAll(middlewareBase);
   Object.keys(middleware).forEach(function(file) {
     const module = middleware[file];
     if (typeof (module) === 'function') {
