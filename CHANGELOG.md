@@ -1,3 +1,6 @@
+# 2.0.5
+- Fixing another bug in loading controllers
+
 # 2.0.4
 - Removed cluster support in dev version
 
