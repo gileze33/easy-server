@@ -2,7 +2,7 @@ const debug = require('debug')('easy-server');
 import express = require('express');
 const MiddlewareManager = require('middleware-manager');
 
-import start = require('./shared/start');
+import start = require('./start');
 import {Options, Server} from './shared/server';
 
 function easyServer(options: Options): Server {

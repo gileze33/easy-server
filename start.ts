@@ -1,4 +1,4 @@
-import {Server} from './server';
+import {Server} from './shared/server';
 import cluster = require('cluster');
 import path = require('path');
 import http = require('http');
