@@ -41,7 +41,7 @@ function start(server: Server): http.Server {
   var controllersBase = path.resolve(server.easyOptions.controllers);
   var controllers = require('require-all')({
     dirname: controllersBase,
-    filter: /^((?!\/_).)*\.js$/,
+    filter: /^(((?!\/_).)*)\.js$/,
     excludeDirs: /^\.(git|svn)$/,
     recursive: true,
   });

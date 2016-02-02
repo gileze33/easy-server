@@ -11,7 +11,7 @@ export function getRouter(controllersBase: string, server: Server): Router {
   debug('Loading controllers');
   const controllers = require('require-all')({
     dirname: controllersBase,
-    filter: /^((?!\/_).)*\.js$/,
+    filter: /^(((?!\/_).)*)\.js$/,
     excludeDirs: /^\.(git|svn)$/,
     recursive: true,
   });
