@@ -1,3 +1,6 @@
+# 2.0.3
+- Removed cluster support in dev version
+
 # 2.0.2
 - Fixed a middleware loading issue (incorrect regex for `require-all`)
 
