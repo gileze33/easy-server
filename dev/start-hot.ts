@@ -27,7 +27,7 @@ function start(server: Server): http.Server {
   const middlewareBase = path.resolve(server.easyOptions.middleware);
   const middleware = require('require-all')({
     dirname: middlewareBase,
-    filter: /^((?!\/_).)*\.js$/,
+    filter: /^(((?!\/_).)*)\.js$/,
     excludeDirs: /^\.(git|svn)$/,
     recursive: true,
   });
