@@ -40,4 +40,8 @@ function easyServer(options: Options): Server {
   return app;
 }
 
+module easyServer {
+  export interface Application extends Server {}
+}
+
 export = easyServer;
