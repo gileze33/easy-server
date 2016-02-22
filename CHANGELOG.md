@@ -1,6 +1,9 @@
 # 2.0.7
 - Export Application interface (for Typescript.)
 
+# 2.0.6
+- Removed the dependency on `require-all` module. Fixed an issue with files and directories with similar names.
+
 # 2.0.5
 - Fixing another bug in loading controllers
 
