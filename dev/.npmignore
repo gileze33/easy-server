@@ -1,2 +1,4 @@
 publish.sh
 node_modules/
+/merge-package.*
+package.override.json
