@@ -1,6 +1,6 @@
 const debug = require('debug')('easy-server');
 import express = require('express');
-const MiddlewareManager = require('middleware-manager');
+import MiddlewareManager = require('middleware-manager');
 
 import start = require('./start');
 import {Options, Server} from './shared/server';

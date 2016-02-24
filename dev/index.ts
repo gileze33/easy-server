@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === 'production') {
 
 const debug = require('debug')('easy-server');
 import express = require('express');
-const MiddlewareManager = require('middleware-manager');
+import MiddlewareManager = require('middleware-manager');
 
 import start = require('./start-hot');
 import {Options, Server} from './shared/server';

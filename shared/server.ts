@@ -1,4 +1,5 @@
 import {Express} from 'express';
+import * as MiddlewareManager from 'middleware-manager';
 
 export interface Options {
   middleware?: string;
@@ -16,6 +17,6 @@ export interface Options {
 export interface Server extends Express {
   easyOptions: Options;
   debug: Function;
-  middleware: any;
+  middleware: MiddlewareManager;
   start: Function;
 }
