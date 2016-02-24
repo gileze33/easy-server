@@ -1,3 +1,6 @@
+# 2.0.8
+- Use typed middleware-manager
+
 # 2.0.7
 - Export Application interface (for Typescript.)
 
