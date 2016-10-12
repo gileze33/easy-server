@@ -1,12 +1,14 @@
 import walk from './walk';
 import path = require('path');
 
-function requireAll(base: string) {
+function requireAll(base: string, extensions: string[]) {
   return walk(base).reduce((map, file) => {
-    if (file.substr(file.length - 3) !== '.js' ||
+    if (
+      !extensions.some(ext => file.substr(file.length - ext.length) === ext) ||
       file.indexOf('/_') > -1 ||
       file.indexOf('/.git/') > -1 ||
-      file.indexOf('/.svn/') > -1) {
+      file.indexOf('/.svn/') > -1
+    ) {
       return map;
     }
 

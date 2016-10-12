@@ -10,6 +10,8 @@ export interface Options {
   cors?: boolean;
   cluster?: number;
 
+  extensions?: string[];
+
   /** tab title */
   title?: string;
 }

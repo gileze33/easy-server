@@ -22,6 +22,7 @@ function easyServer(options: Options): Server {
     port: 8080,
     autoStart: true,
     debug,
+    extensions: ['.js'],
   };
 
   Object.keys(options).forEach(key => {
