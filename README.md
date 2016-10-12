@@ -9,7 +9,8 @@ Really lightweight wrapper around express to help you make a neat app from day o
     "middleware": "./middleware", // folder containing your middleware files
     "autoStart": true, // if set to false, you need to call setup()
     "debug": Function, // pass a function to be used as the debug logger
-    "cluster": Number // optional - leaving out will run 1 instance of express
+    "cluster": Number, // optional - leaving out will run 1 instance of express
+    "extensions": [".js", ".jsx"], // optional - defaults to [".js"]
 }
 ```
 

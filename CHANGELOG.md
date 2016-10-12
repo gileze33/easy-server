@@ -1,3 +1,6 @@
+# 2.1.0
+- Added `extensions` option
+
 # 2.0.8
 - Use typed middleware-manager
 
