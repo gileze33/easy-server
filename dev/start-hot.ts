@@ -14,7 +14,7 @@ function start(server: Server): http.Server {
   }
 
   const middlewareBase = path.resolve(server.easyOptions.middleware);
-  const middleware = requireAll(middlewareBase);
+  const middleware = requireAll(middlewareBase, server.easyOptions.extensions);
   Object.keys(middleware).forEach(function(file) {
     const module = middleware[file];
     if (typeof (module) === 'function') {

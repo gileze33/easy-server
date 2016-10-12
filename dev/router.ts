@@ -10,7 +10,7 @@ export function getRouter(controllersBase: string, server: Server): Router {
   app.easyOptions = server.easyOptions;
 
   debug('Loading controllers');
-  const controllers = requireAll(controllersBase);
+  const controllers = requireAll(controllersBase, server.easyOptions.extensions);
   Object.keys(controllers).forEach(file => {
     const module = controllers[file];
     if (module.controller) {

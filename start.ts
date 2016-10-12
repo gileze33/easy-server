@@ -23,7 +23,7 @@ function start(server: Server): http.Server {
   }
 
   var middlewareBase = path.resolve(server.easyOptions.middleware);
-  var middleware = requireAll(middlewareBase);
+  var middleware = requireAll(middlewareBase, server.easyOptions.extensions);
   Object.keys(middleware).forEach(function(file) {
     var module = middleware[file];
     if (typeof (module) === 'function') {
@@ -35,7 +35,7 @@ function start(server: Server): http.Server {
   });
 
   var controllersBase = path.resolve(server.easyOptions.controllers);
-  var controllers = requireAll(controllersBase);
+  var controllers = requireAll(controllersBase, server.easyOptions.extensions);
   Object.keys(controllers).forEach(function(file) {
     var module = controllers[file];
     if (typeof (module.controller) === 'function') {
