@@ -7,7 +7,8 @@ function requireAll(base: string, extensions: string[]) {
       !extensions.some(ext => file.substr(file.length - ext.length) === ext) ||
       file.indexOf('/_') > -1 ||
       file.indexOf('/.git/') > -1 ||
-      file.indexOf('/.svn/') > -1
+      file.indexOf('/.svn/') > -1 ||
+      file.indexOf('.spec.js') > -1
     ) {
       return map;
     }
