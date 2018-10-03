@@ -1,4 +1,4 @@
-import {Express} from 'express';
+import { Express } from 'express';
 import * as MiddlewareManager from 'middleware-manager';
 
 export interface Options {
@@ -14,6 +14,9 @@ export interface Options {
 
   /** tab title */
   title?: string;
+
+  /** sets the node keepalive timeout on sockets */
+  keepAliveTimeout?: number;
 }
 
 export interface Server extends Express {

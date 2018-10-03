@@ -3,7 +3,7 @@ import express = require('express');
 import MiddlewareManager = require('middleware-manager');
 
 import start = require('./start');
-import {Options, Server} from './shared/server';
+import { Options, Server } from './shared/server';
 
 function easyServer(options: Options): Server {
   const app: Server = <any>express();
@@ -17,12 +17,17 @@ function easyServer(options: Options): Server {
     autoStart: true,
     debug,
     extensions: ['.js'],
+    keepAliveTimeout: 120000,
   };
 
   Object.keys(options).forEach(key => {
     if (options.hasOwnProperty(key)) {
       app.easyOptions[key] = options[key];
     }
+  });
+
+  (app as any).on('connection', function (socket) {
+    socket.setTimeout(app.easyOptions.keepAliveTimeout);
   });
 
   app.debug = app.easyOptions.debug;
@@ -42,7 +47,7 @@ function easyServer(options: Options): Server {
 }
 
 module easyServer {
-  export interface Application extends Server {}
+  export interface Application extends Server { }
 }
 
 export = easyServer;
