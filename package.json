@@ -1,13 +1,13 @@
 {
   "name": "easy-server",
-  "version": "2.2.0",
+  "version": "2.3.2",
   "description": "Easiest possible express wrapper to get something out the door yesterday",
   "main": "index.js",
   "scripts": {
     "build": "tsc -p .",
     "watch": "tsc -w -p .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "typings install",
+    "prepublish": "typings install",
     "preversion": "npm run build",
     "postversion": "git push --follow-tags && ./publish.sh"
   },
