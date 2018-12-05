@@ -4,10 +4,9 @@
   "description": "Easiest possible express wrapper to get something out the door yesterday",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -p .",
-    "watch": "tsc -w -p .",
+    "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "typings install",
+    "prebuild": "del 'app/**/*.{js,map}'",
     "preversion": "npm run build",
     "postversion": "git push --follow-tags && ./publish.sh"
   },
@@ -23,8 +22,12 @@
     "middleware-manager": "^0.1.1"
   },
   "devDependencies": {
+    "@types/express": "^4.16.0",
+    "@types/mime": "^2.0.0",
+    "@types/node": "^10.12.12",
+    "@types/serve-static": "^1.13.2",
+    "del-cli": "^1.1.0",
     "tslint": "^3.5.0",
-    "typescript": "^1.8.2",
-    "typings": "^2.0.0"
+    "typescript": "^3.2.1"
   }
 }
