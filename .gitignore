@@ -3,4 +3,5 @@ node_modules/
 typings/
 
 *.js
+*.js.map
 dev/package.json
